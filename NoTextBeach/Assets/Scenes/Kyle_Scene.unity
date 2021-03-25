@@ -496,7 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadb9c30663ee2640bde155053ad9648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectRange: 0
+  range: 0
+  capacity: 0
+  carrying: 0
   testTrash: {fileID: 30623665}
 --- !u!114 &1901442726
 MonoBehaviour:
@@ -510,4 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f9cfb95bda1844981823bd0260b8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCollector: {fileID: 1901442725}
   moveSpeed: 0
+  collectRange: 0
+  collectCapacity: 0

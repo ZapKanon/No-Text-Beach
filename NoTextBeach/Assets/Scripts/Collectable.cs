@@ -7,7 +7,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     public bool collected;
-    public GameObject parentCollector;
+    public Collector parentCollector;
 
     // Start is called before the first frame update
     void Start()
@@ -26,15 +26,17 @@ public class Collectable : MonoBehaviour
     }
 
     //Set this object's collector
-    public void Collected(GameObject collector)
+    public void Collected(Collector collector)
     {
         parentCollector = collector;
         collected = true;
     }
 
     //Destroy this object when it enters a trash can
+    //also decrement collector's carrying count
     public void Trashed()
     {
+        parentCollector.carrying--;
         Destroy(gameObject);
     }
 }

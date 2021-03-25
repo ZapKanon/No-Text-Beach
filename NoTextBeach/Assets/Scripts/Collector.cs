@@ -6,27 +6,31 @@ using UnityEngine;
 //Author: Kyle Weekley
 public class Collector : MonoBehaviour
 {
-    public float collectRange;
+    public float range;
+    public float capacity;
+    public float carrying;
     public Collectable testTrash;
 
     // Start is called before the first frame update
     void Start()
     {
-        collectRange = 1.0f;
+        range = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testTrash != null)
+        if (testTrash != null && carrying < capacity)
         {
             //Set Collectable object's parentCollector to this object if close enough
-            if ((this.transform.position - testTrash.transform.position).magnitude < collectRange)
+            if ((this.transform.position - testTrash.transform.position).magnitude < range)
             {
                 if (testTrash.collected == false)
                 {
                     Debug.Log("Collected!");
-                    testTrash.Collected(gameObject);
+                    testTrash.Collected(this);
+                    //Increment count for currently carried objects
+                    carrying++;
                 }
             }
         }
