@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7576334137651398999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7576334137651398997}
+  - component: {fileID: 7576334137651398996}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7576334137651398997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576334137651398999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4388405, y: -0.15896358, z: -0.5054022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7576334137651398996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576334137651398999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa5e9f8e4307a5428e1d61d50531dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountToSpawn: 15
+  spawnCondition: 0
+  timeUntilRespawn: 10
+  collectsUntilRespawn: 10
+  minSpawnPos: {x: -8, y: -4.5}
+  maxSpawnPos: {x: 8, y: 4.5}
+  trashPrefabs:
+  - {fileID: 977180114000228380, guid: a0775d71181b45740b76c341f58da245, type: 3}
+  - {fileID: 3677828421261301007, guid: fb57461e3011fb6488926fa3dd76b09d, type: 3}
+  - {fileID: 6720163599241984838, guid: 3ce1a3001eee6f74698e76c8af878294, type: 3}
+  - {fileID: 8170508672280913823, guid: 2a754a8f2ff0cac45a7160df113b25a8, type: 3}
+  - {fileID: 9042589491975002320, guid: cc140afa86387f44d953f3cd607a3d8b, type: 3}
+  - {fileID: 5113163624090869172, guid: 6a43dad23fbde9b40aa8f8b79ccc057d, type: 3}
+  - {fileID: 4202432590310427714, guid: aa2d6a93494db94489a24e0d460fca9b, type: 3}
+  - {fileID: 5657551543580712566, guid: c55ecba96bb78be4faa0762b8e45683c, type: 3}
+  - {fileID: 5140140136869280006, guid: 18900ad25fa57ab43906f5670f1e805e, type: 3}
+  - {fileID: 3425281454908281147, guid: 2dc6cb2fdd2fb5b4b999813e2a573336, type: 3}
+  - {fileID: 8512142050481267261, guid: 610b9bd25a894154c92e7e955838f3c1, type: 3}
+  - {fileID: 8644436095411469257, guid: a7158c831b3d66f41a2187fde5181968, type: 3}
+  - {fileID: 2693729466195018786, guid: e8cef46fb9ace4e4b8b62903fb1fe114, type: 3}
+  - {fileID: 690894231533526265, guid: 14e89bb5f399fc7419e0ca56cce88e27, type: 3}
+  - {fileID: 4226671577681379460, guid: 64e157109b5824c47911651510ddf75a, type: 3}
+  - {fileID: 7622176900443536376, guid: a8376ce5c3a551540b4988e245267910, type: 3}
+  waveDuration: 2
+  waveStartPos: {x: 0, y: 10}
+  waveEndPos: {x: 0, y: 0}
+  wavePrefab: {fileID: 2730792108573756373, guid: d1ee883567217ed4f9cf20865346f3e1, type: 3}
