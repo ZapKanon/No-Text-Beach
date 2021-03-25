@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     [SerializeField] private int amountToSpawn = 10; //Amount of trash to spawn per wave
+    [SerializeField] private int maxTrash = 100; //Max amount of trash spawned at one time
     [SerializeField] private SpawnCondition spawnCondition = SpawnCondition.Time; //What should cause the trash to respawn
     [SerializeField] private float timeUntilRespawn = 10.0f; //Seconds until the next wave is spawned
     [SerializeField] private int collectsUntilRespawn = 10; //Amount of trash to collectcollect until the next wave is spawned
@@ -53,8 +54,16 @@ public class SpawnManager : MonoBehaviour
         if (((spawnCondition == SpawnCondition.Time && elapsedTime >= timeUntilRespawn) ||
             (spawnCondition == SpawnCondition.Collection && collectedTrash >= collectsUntilRespawn)) && !spawning) //Current respawn condition has been met
         {
-            spawning = true;
-            MoveWave(); //Show the wave moving
+            if (trash.Count < maxTrash) //Won't spawn trash past max value
+            {
+                spawning = true;
+                MoveWave(); //Show the wave moving
+            }
+            else //Resets values to check again soon
+            {
+                elapsedTime = 0; //Resets time
+                collectedTrash = 0; // Resets cllected trash
+            }
         }
     }
 
@@ -121,9 +130,10 @@ public class SpawnManager : MonoBehaviour
         elapsedTime = 0; //Resets time
         collectedTrash = 0; // Resets cllected trash
 
-        if (trashPrefabs.Count > 0)
+        for (int i = 0; i < amountToSpawn; i++)
         {
-            for (int i = 0; i < amountToSpawn; i++)
+            Debug.Log("Trash.Count: " + trash.Count);
+            if (trash.Count < maxTrash) //Prevents spawning past max value
             {
                 int garbageIndex = Random.Range(0, trashPrefabs.Count); //Which prefab to instantiate
                 Vector3 position = new Vector3(Random.Range(minSpawnPos.x, maxSpawnPos.x), Random.Range(minSpawnPos.y, maxSpawnPos.y), 5); //Gets random position
