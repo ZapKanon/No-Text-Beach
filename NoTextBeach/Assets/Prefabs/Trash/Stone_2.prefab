@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1988857619612888839}
   - component: {fileID: 29443224976400846}
   - component: {fileID: 5779785656992891832}
+  - component: {fileID: 6358001453805167154}
   m_Layer: 0
   m_Name: Stone_2
   m_TagString: Trash
@@ -99,3 +100,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.58, y: 1.9}
   m_Direction: 1
+--- !u!114 &6358001453805167154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693729466195018786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337071fa0c6d784480e993fe2837b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  parentCollector: {fileID: 0}

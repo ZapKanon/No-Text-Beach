@@ -9,29 +9,46 @@ public class Collector : MonoBehaviour
     public float range;
     public float capacity;
     public float carrying;
-    public Collectable testTrash;
+
+    public CircleCollider2D collectorCollider;
+    public GameObject rangeIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
-        range = 1.0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testTrash != null && carrying < capacity)
+        UpdateRange();
+    }
+
+    //Update collection range and visual indicator to match value
+    public void UpdateRange()
+    {
+        collectorCollider.radius = range;
+        rangeIndicator.transform.localScale = new Vector3(range * 2, range * 2, 0);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //Pick up trash from within range
+        if (collision.gameObject.tag == "Trash" && carrying < capacity)
         {
-            //Set Collectable object's parentCollector to this object if close enough
-            if ((this.transform.position - testTrash.transform.position).magnitude < range)
+            collision.gameObject.GetComponent<Collectable>().Collected(this);
+            Debug.Log("Collected!");
+            carrying++;
+        }
+
+        //Deposit all collected trash when touching trash can
+        else if (collision.gameObject.tag == "TrashCan")
+        {
+            GameObject[] collectedTrash = GameObject.FindGameObjectsWithTag("CollectedTrash");
+            foreach (GameObject trash in collectedTrash)
             {
-                if (testTrash.collected == false)
-                {
-                    Debug.Log("Collected!");
-                    testTrash.Collected(this);
-                    //Increment count for currently carried objects
-                    carrying++;
-                }
+                trash.GetComponent<Collectable>().Trashed();
             }
         }
     }
