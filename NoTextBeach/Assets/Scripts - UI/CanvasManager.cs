@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoBehaviour
+public class CanvasManager : MonoBehaviour
 {
 
-    public static UIManager manager;
+    public static CanvasManager manager;
 
     public GameObject Tutorial;
     public GameObject ButtonGroup;
