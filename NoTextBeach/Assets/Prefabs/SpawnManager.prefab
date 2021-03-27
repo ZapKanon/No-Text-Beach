@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7576334137651398999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4388405, y: -0.15896358, z: -0.5054022}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountToSpawn: 15
+  maxTrash: 100
   spawnCondition: 0
   timeUntilRespawn: 10
   collectsUntilRespawn: 10
@@ -67,6 +68,6 @@ MonoBehaviour:
   - {fileID: 4226671577681379460, guid: 64e157109b5824c47911651510ddf75a, type: 3}
   - {fileID: 7622176900443536376, guid: a8376ce5c3a551540b4988e245267910, type: 3}
   waveDuration: 2
-  waveStartPos: {x: 0, y: 10}
-  waveEndPos: {x: 0, y: 0}
-  wavePrefab: {fileID: 2730792108573756373, guid: d1ee883567217ed4f9cf20865346f3e1, type: 3}
+  waveStartPos: {x: 0, y: 13.5}
+  waveEndPos: {x: 0, y: 1.5}
+  wavePrefab: {fileID: 1155186368470151255, guid: dd6c88d5f63f8424fb516ac71e486c60, type: 3}
