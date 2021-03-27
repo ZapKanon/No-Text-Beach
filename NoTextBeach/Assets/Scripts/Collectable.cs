@@ -6,13 +6,12 @@ using UnityEngine;
 //Author: Kyle Weekley
 public class Collectable : MonoBehaviour
 {
-    public bool collected;
     public Collector parentCollector;
 
     // Start is called before the first frame update
     void Start()
     {
-        collected = false;
+
     }
 
     // Update is called once per frame
@@ -21,7 +20,7 @@ public class Collectable : MonoBehaviour
         //This object will follow its collector if it has one
         if (parentCollector != null)
         {
-            transform.position = parentCollector.transform.position;
+            transform.position = new Vector3(parentCollector.transform.position.x, parentCollector.transform. position.y, transform.position.z);
         }
     }
 
@@ -29,7 +28,7 @@ public class Collectable : MonoBehaviour
     public void Collected(Collector collector)
     {
         parentCollector = collector;
-        collected = true;
+        tag = "CollectedTrash";
     }
 
     //Destroy this object when it enters a trash can
@@ -38,5 +37,6 @@ public class Collectable : MonoBehaviour
     {
         parentCollector.carrying--;
         Destroy(gameObject);
+        Debug.Log("Money++ goes here");
     }
 }
