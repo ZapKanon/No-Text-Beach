@@ -20,9 +20,7 @@ public class Player : MonoBehaviour
     {
         moveSpeed = 4.0f; 
         collectRange = 1.0f;
-        collectCapacity = 1;
-
-        UpdateCollectorValues();
+        collectCapacity = 5;
     }
 
     // Update is called once per frame
@@ -30,6 +28,7 @@ public class Player : MonoBehaviour
     {
 
         FollowCursor();
+        UpdateCollectorValues();
     }
 
     //Player follows the cursor at a set speed

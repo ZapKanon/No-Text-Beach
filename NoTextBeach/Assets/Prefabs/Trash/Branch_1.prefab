@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1556203120158819285}
   - component: {fileID: 9127411865341678476}
   - component: {fileID: 5790334654455177733}
+  - component: {fileID: -4585343227252468991}
   m_Layer: 0
   m_Name: Branch_1
   m_TagString: Trash
@@ -99,3 +100,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.28, y: 1.2}
   m_Direction: 1
+--- !u!114 &-4585343227252468991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677828421261301007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337071fa0c6d784480e993fe2837b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  parentCollector: {fileID: 0}

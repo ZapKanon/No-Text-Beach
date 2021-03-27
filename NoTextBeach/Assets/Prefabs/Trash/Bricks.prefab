@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2933141969235699573}
   - component: {fileID: 5390369621544093637}
   - component: {fileID: 603823656141113052}
+  - component: {fileID: -1918374128055393371}
   m_Layer: 0
   m_Name: Bricks
   m_TagString: Trash
@@ -109,3 +110,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.02, y: 3.08}
   m_EdgeRadius: 0
+--- !u!114 &-1918374128055393371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170508672280913823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337071fa0c6d784480e993fe2837b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  parentCollector: {fileID: 0}
