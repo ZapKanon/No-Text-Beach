@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     {
         moveSpeed = 4.0f; 
         collectRange = 1.0f;
-        collectCapacity = 1;
+        collectCapacity = 5;
 
         UpdateCollectorValues();
     }

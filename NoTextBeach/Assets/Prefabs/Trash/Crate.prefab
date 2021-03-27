@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8150152456564452964}
   - component: {fileID: 8999403697021093497}
   - component: {fileID: 8049953521580540815}
+  - component: {fileID: -7065749015577440751}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Trash
@@ -99,3 +100,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.5}
   serializedVersion: 2
   m_Radius: 1.2
+--- !u!114 &-7065749015577440751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202432590310427714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337071fa0c6d784480e993fe2837b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
+  parentCollector: {fileID: 0}
