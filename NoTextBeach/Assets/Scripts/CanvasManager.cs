@@ -83,6 +83,14 @@ public class CanvasManager : MonoBehaviour
         LeanTween.moveLocalY(UpgradeMenu, upgrade_menu_return_pos, 1f).setEaseInOutQuad();
     }
 
+    /* Upgrade buttons TO DO:
+     * 1 button per upgrade type
+     * If selected, check upgrade cost against the player's score (kept in GameManager). Only do actions if score >= cost
+     * reduce player score by cost
+     * call the GameManager's Upgrade method
+     * increase cost of the purchased upgrade by a set amount
+     */
+
     public void UpdateHoldBar(float value)
     {
         value = Mathf.Clamp(value, 0f, 1f);
