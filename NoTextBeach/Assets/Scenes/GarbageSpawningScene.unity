@@ -275,12 +275,32 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
+      propertyPath: wavePrefab
+      value: 
+      objectReference: {fileID: 8315957288569263205, guid: dd6c88d5f63f8424fb516ac71e486c60, type: 3}
+    - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
+      propertyPath: waveDuration
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
       propertyPath: amountToSpawn
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
+      propertyPath: waveStartPos.y
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
+      propertyPath: waveEbbDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
       propertyPath: timeUntilRespawn
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576334137651398996, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
+      propertyPath: waveFlowDuration
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7576334137651398997, guid: d59bc51bc9f27ba4281a2ef326791d65, type: 3}
       propertyPath: m_RootOrder

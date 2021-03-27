@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public enum SpawnCondition {
+    public enum Condition {
         Time,
         Collection
     }
 
     [SerializeField] private int amountToSpawn = 10; //Amount of trash to spawn per wave
     [SerializeField] private int maxTrash = 100; //Max amount of trash spawned at one time
-    [SerializeField] private SpawnCondition spawnCondition = SpawnCondition.Time; //What should cause the trash to respawn
+    [SerializeField] private Condition spawnCondition = Condition.Time; //What should cause the trash to respawn
     [SerializeField] private float timeUntilRespawn = 10.0f; //Seconds until the next wave is spawned
     [SerializeField] private int collectsUntilRespawn = 10; //Amount of trash to collectcollect until the next wave is spawned
     [SerializeField] private Vector2 minSpawnPos; //Min position trash can be spawned at
     [SerializeField] private Vector2 maxSpawnPos; //Max position trash can be spawned at
     [SerializeField] private List<GameObject> trashPrefabs; //Prefabs for spawned trash
 
-    [SerializeField] private float waveDuration = 2; //Number of seconds wave moves across the screen
+    [SerializeField] private float waveFlowDuration = 0.75f; //Number of seconds wave moves onto the screen
+    [SerializeField] private float waveEbbDuration = 1; //Number of seconds wave moves off the screen
     [SerializeField] private Vector2 waveStartPos; //Position wave starts at and returns to
     [SerializeField] private Vector2 waveEndPos; //Position wave moves to before returning
     [SerializeField] private GameObject wavePrefab; //Prefab for moving wave
@@ -27,6 +28,51 @@ public class SpawnManager : MonoBehaviour
     private List<GameObject> trash; //List of spawned trash
     private float elapsedTime; //Time since wave was spawned
     private int collectedTrash; //Amount of trash collected since wave was spawned
+    private Vector2 waveVelocity = Vector2.zero; //Velocity of the wave
+
+    public int AmountToSpawn
+    {
+        get { return amountToSpawn; }
+        set { amountToSpawn = value; }
+    }
+    public int MaxTrash
+    {
+        get { return maxTrash; }
+        set { maxTrash = value; }
+    }
+    public Condition SpawnCondition
+    {
+        get { return spawnCondition; }
+        set { spawnCondition = value; }
+    }
+    public float TimeUntilRespawn
+    {
+        get { return timeUntilRespawn; }
+        set { timeUntilRespawn = value; }
+    }
+
+    public int CollectsUntilRespawn
+    {
+        get { return collectsUntilRespawn; }
+        set { collectsUntilRespawn = value; }
+    }
+
+    public float WaveFlowDuration
+    {
+        get { return waveFlowDuration; }
+        set { waveFlowDuration = value; }
+    }
+
+    public float WaveEbbDuration
+    {
+        get { return waveEbbDuration; }
+        set { waveEbbDuration = value; }
+    }
+
+    public List<GameObject> Trash
+    {
+        get { return trash; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,8 +97,8 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
-        if (((spawnCondition == SpawnCondition.Time && elapsedTime >= timeUntilRespawn) ||
-            (spawnCondition == SpawnCondition.Collection && collectedTrash >= collectsUntilRespawn)) && !spawning) //Current respawn condition has been met
+        if (((spawnCondition == Condition.Time && elapsedTime >= timeUntilRespawn) ||
+            (spawnCondition == Condition.Collection && collectedTrash >= collectsUntilRespawn)) && !spawning) //Current respawn condition has been met
         {
             if (trash.Count < maxTrash) //Won't spawn trash past max value
             {
@@ -104,19 +150,21 @@ public class SpawnManager : MonoBehaviour
     {
 
         float waveElapsed = 0;
-
-        while (waveElapsed < waveDuration / 2) { //Wave flows over time
+        waveVelocity = Vector2.zero;
+        while (waveElapsed < waveFlowDuration) //Wave flows over time
+        { 
             yield return new WaitForSeconds(Time.deltaTime);
-            wave.transform.position = Vector2.Lerp(waveStartPos, waveEndPos, waveElapsed / (waveDuration / 2));
+            wave.transform.position = Vector2.Lerp(waveStartPos, waveEndPos, Mathf.Sin(waveElapsed / waveFlowDuration * Mathf.PI * 0.5f));
             waveElapsed += Time.deltaTime;
         }
 
         SpawnTrash(); //Spawns trash when wave is covering beach
-
-        while (waveElapsed < waveDuration) //Wave ebbs over time
+        waveElapsed = 0; //Reset elapsed time
+     
+        while (waveElapsed < waveEbbDuration) //Wave ebbs over time
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            wave.transform.position = Vector2.Lerp(waveEndPos, waveStartPos, (waveElapsed - waveDuration / 2) / (waveDuration / 2));
+            wave.transform.position = Vector2.Lerp(waveEndPos, waveStartPos, 1 - Mathf.Cos(waveElapsed / waveEbbDuration * Mathf.PI * 0.5f));
             waveElapsed += Time.deltaTime;
         }
 
@@ -132,7 +180,6 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0; i < amountToSpawn; i++)
         {
-            Debug.Log("Trash.Count: " + trash.Count);
             if (trash.Count < maxTrash) //Prevents spawning past max value
             {
                 int garbageIndex = Random.Range(0, trashPrefabs.Count); //Which prefab to instantiate
