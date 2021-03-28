@@ -6,6 +6,7 @@ using UnityEngine;
 //Author: Kyle Weekley
 public class Player : MonoBehaviour
 {
+    private PlayerAnimation playerAnim;
     private Vector3 cursorPosition;
     
     public Collector playerCollector;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = transform.Find("PlayerSprite").GetComponent<PlayerAnimation>();
         moveSpeed = 4.0f; 
         collectRange = 1.0f;
         collectCapacity = 5;
@@ -26,7 +28,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         FollowCursor();
         UpdateCollectorValues();
     }
@@ -38,6 +39,9 @@ public class Player : MonoBehaviour
         cursorPosition.z = transform.position.z;
         //transform.position = Vector3.Lerp(transform.position, cursorPosition, moveSpeed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, cursorPosition, moveSpeed * Time.deltaTime);
+
+        if (playerAnim != null)
+            playerAnim.UpdateState(transform.position, cursorPosition, GetComponent<Collector>().carrying);
     }
 
     //Set the player's collector to reflect their upgradable parameter values
