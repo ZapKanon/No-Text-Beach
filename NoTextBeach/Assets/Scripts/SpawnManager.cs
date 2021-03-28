@@ -148,13 +148,15 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaveEbbAndFlow(GameObject wave)
     {
+        Vector3 start = new Vector3(waveStartPos.x, waveStartPos.y, wave.transform.position.z);
+        Vector3 end = new Vector3(waveEndPos.x, waveEndPos.y, wave.transform.position.z);
 
         float waveElapsed = 0;
         waveVelocity = Vector2.zero;
         while (waveElapsed < waveFlowDuration) //Wave flows over time
         { 
             yield return new WaitForSeconds(Time.deltaTime);
-            wave.transform.position = Vector2.Lerp(waveStartPos, waveEndPos, Mathf.Sin(waveElapsed / waveFlowDuration * Mathf.PI * 0.5f));
+            wave.transform.position = Vector3.Lerp(start, end, Mathf.Sin(waveElapsed / waveFlowDuration * Mathf.PI * 0.5f));
             waveElapsed += Time.deltaTime;
         }
 
@@ -164,7 +166,7 @@ public class SpawnManager : MonoBehaviour
         while (waveElapsed < waveEbbDuration) //Wave ebbs over time
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            wave.transform.position = Vector2.Lerp(waveEndPos, waveStartPos, 1 - Mathf.Cos(waveElapsed / waveEbbDuration * Mathf.PI * 0.5f));
+            wave.transform.position = Vector3.Lerp(end, start, 1 - Mathf.Cos(waveElapsed / waveEbbDuration * Mathf.PI * 0.5f));
             waveElapsed += Time.deltaTime;
         }
 
