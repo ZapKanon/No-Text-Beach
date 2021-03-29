@@ -10,7 +10,8 @@ public enum UpgradeType { PlayerSpeed, PlayerRange, PlayerCapacity, Net }
 public class GameManager : MonoBehaviour
 {
     #region Fields
-    private int score;
+    public static GameManager gm;
+    private int score = 100;
     public Player player;
 
     [SerializeField] private int speedUpgradeValue = 1;
@@ -23,6 +24,11 @@ public class GameManager : MonoBehaviour
     private int capacityUpgradesPurchased = 0;
     #endregion
 
+
+    private void Awake()
+    {
+        gm = this;
+    }
 
     void Start()
     {
@@ -48,9 +54,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="upgradeType">The type of upgrade purchased.</param>
     /// <param name="cost">The cost of the purchased upgrade.</param>
-    public void Upgrade(UpgradeType upgradeType, int cost)
+    public bool Upgrade(UpgradeType upgradeType, int cost)
     {
-        if(score < cost) { return; }
+        if(score < cost) { return false; }
         score -= cost;
 
         // should probably use getters and setters instead of calling fields outright
@@ -74,6 +80,7 @@ public class GameManager : MonoBehaviour
         }
 
         player.UpdateCollectorValues();
+        return true;
     }
 
 
