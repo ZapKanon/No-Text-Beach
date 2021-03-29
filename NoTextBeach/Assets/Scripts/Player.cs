@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //playerAnim = transform.Find("PlayerSprite").GetComponent<PlayerAnimation>();
+        playerAnim = transform.Find("PlayerSprite").GetComponent<PlayerAnimation>();
         moveSpeed = 4.0f; 
         collectRange = 1.0f;
         collectCapacity = 5;

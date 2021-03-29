@@ -34,7 +34,7 @@ public class Net : MonoBehaviour
     //Increment player score and spawn a money icon
     public void GenerateMoney()
     {
-        gameManager.score++;
+        gameManager.addToScore(1);
 
         Instantiate(floatingIcon, Camera.main.ScreenToWorldPoint(transform.position), Quaternion.identity, null);
         FloatingIcon iconScript = floatingIcon.GetComponent<FloatingIcon>();

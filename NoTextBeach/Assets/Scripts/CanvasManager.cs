@@ -12,6 +12,8 @@ public class CanvasManager : MonoBehaviour
 
     public static CanvasManager manager;
 
+    public Player player;
+
     public GameObject Tutorial;
     public GameObject ButtonGroup;
     public GameObject UpgradeMenu;
@@ -56,7 +58,7 @@ public class CanvasManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
             ShowNetGain();
 
-        UpdateHoldBar(debug_fill_value);
+        UpdateHoldBar(player.gameObject.GetComponent<Collector>().carrying / player.gameObject.GetComponent<Collector>().capacity);
     }
 
     /// <summary>
@@ -112,7 +114,7 @@ public class CanvasManager : MonoBehaviour
     {
         value = Mathf.Clamp(value, 0f, 1f);
         //hold_bar_image.fillAmount = Mathf.Lerp(hold_bar_fill, 1f, value);
-        //hold_bar_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.5f);
+        hold_bar_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.5f);
 
     }
 

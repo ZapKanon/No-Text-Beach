@@ -67,7 +67,7 @@ public class Collector : MonoBehaviour
                 trash.GetComponent<Collectable>().Trashed();
 
                 //Increment the player's score for each piece of trash deposited
-                gameManager.score++;
+                GameManager.gm.addToScore(1);
 
                 //Spawn a money icon for each piece of trash deposited
                 Instantiate(floatingIcon, new Vector3(collision.transform.position.x, collision.transform.position.y, 0), Quaternion.identity, null);

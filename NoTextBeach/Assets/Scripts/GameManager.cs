@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private int speedUpgradesPurchased = 0;
     private int rangeUpgradesPurchased = 0;
     private int capacityUpgradesPurchased = 0;
+    private float timeUntilFirstUpgrade = 0.0f;
+    private int firstUpgradePurchased = -1;
     #endregion
 
 
@@ -56,6 +58,12 @@ public class GameManager : MonoBehaviour
     /// <param name="cost">The cost of the purchased upgrade.</param>
     public bool Upgrade(UpgradeType upgradeType, int cost)
     {
+        if(timeUntilFirstUpgrade == 0.0f)
+        {
+            timeUntilFirstUpgrade = Time.time;
+            firstUpgradePurchased = (int)upgradeType;
+        }
+
         if(score < cost) { return false; }
         score -= cost;
 
@@ -81,6 +89,12 @@ public class GameManager : MonoBehaviour
 
         player.UpdateCollectorValues();
         return true;
+    }
+
+
+    public void addToScore(int amount)
+    {
+        score += amount;
     }
 
 
@@ -115,6 +129,8 @@ public class GameManager : MonoBehaviour
         gameData.Add("rangeUpgradesPurchased", rangeUpgradesPurchased);
         gameData.Add("capacityUpgradesPurchased", capacityUpgradesPurchased);
         gameData.Add("timePlayed", Time.time);
+        gameData.Add("timeUntilFirstUpgrade", timeUntilFirstUpgrade);
+        gameData.Add("firstUpgradePurchased", firstUpgradePurchased);
 
         return gameData;
     }
