@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     #region Fields
     public static GameManager gm;
-    private int score = 100;
+    public int score = 100;
     public Player player;
 
     [SerializeField] private int speedUpgradeValue = 1;
