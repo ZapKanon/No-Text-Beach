@@ -13,6 +13,11 @@ public class Collector : MonoBehaviour
     public CircleCollider2D collectorCollider;
     public GameObject rangeIndicator;
 
+    [SerializeField] private GameObject floatingIcon;
+    [SerializeField] private GameObject capacityIcon;
+
+    [SerializeField] private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +40,22 @@ public class Collector : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Pick up trash from within range
-        if (collision.gameObject.tag == "Trash" && carrying < capacity)
+        if (collision.gameObject.tag == "Trash")
         {
-            collision.gameObject.GetComponent<Collectable>().Collected(this);
-            Debug.Log("Collected!");
-            carrying++;
+            if (carrying < capacity)
+            {
+                collision.gameObject.GetComponent<Collectable>().Collected(this);
+                Debug.Log("Collected!");
+                carrying++;
+            }
+            //If cpaacity has been reached, spawn an icon
+            else if (capacityIcon == null)
+            {
+                capacityIcon = Instantiate(floatingIcon, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, null);
+                FloatingIcon iconScript = capacityIcon.GetComponent<FloatingIcon>();
+                iconScript.GetComponent<SpriteRenderer>().color = Color.red;
+                iconScript.GetComponent<SpriteRenderer>().sprite = iconScript.fullCapacity;
+            }
         }
 
         //Deposit all collected trash when touching trash can
@@ -49,6 +65,15 @@ public class Collector : MonoBehaviour
             foreach (GameObject trash in collectedTrash)
             {
                 trash.GetComponent<Collectable>().Trashed();
+
+                //Increment the player's score for each piece of trash deposited
+                gameManager.score++;
+
+                //Spawn a money icon for each piece of trash deposited
+                Instantiate(floatingIcon, new Vector3(collision.transform.position.x, collision.transform.position.y, 0), Quaternion.identity, null);
+                FloatingIcon iconScript = floatingIcon.GetComponent<FloatingIcon>();
+                iconScript.GetComponent<SpriteRenderer>().color = Color.green;
+                iconScript.GetComponent<SpriteRenderer>().sprite = iconScript.money;
             }
         }
     }

@@ -95,7 +95,7 @@ public class CanvasManager : MonoBehaviour
     {
         value = Mathf.Clamp(value, 0f, 1f);
         //hold_bar_image.fillAmount = Mathf.Lerp(hold_bar_fill, 1f, value);
-        hold_bar_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.5f);
+        //hold_bar_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.5f);
 
     }
 

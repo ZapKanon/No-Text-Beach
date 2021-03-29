@@ -10,7 +10,7 @@ public enum UpgradeType { PlayerSpeed, PlayerRange, PlayerCapacity, Net }
 public class GameManager : MonoBehaviour
 {
     #region Fields
-    private int score;
+    public int score;
     public Player player;
 
     [SerializeField] private int speedUpgradeValue = 1;
