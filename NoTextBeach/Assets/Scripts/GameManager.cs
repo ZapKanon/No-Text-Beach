@@ -13,15 +13,18 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public int score;
     public Player player;
+    public Net net;
 
     [SerializeField] private int speedUpgradeValue = 1;
     [SerializeField] private int rangeUpgradeValue = 1;
     [SerializeField] private int capacityUpgradeValue = 1;
+    [SerializeField] private float netUpgradeValue = 0.5f;
 
     // Qualtrics data
     private int speedUpgradesPurchased = 0;
     private int rangeUpgradesPurchased = 0;
     private int capacityUpgradesPurchased = 0;
+    private int netUpgradesPurchased = 0;
     private float timeUntilFirstUpgrade = 0.0f;
     private int firstUpgradePurchased = -1;
     #endregion
@@ -82,6 +85,10 @@ public class GameManager : MonoBehaviour
                 player.collectCapacity += capacityUpgradeValue;
                 capacityUpgradesPurchased++;
                 break;
+            case UpgradeType.Net:
+                net.moneyGenerateSpeed -= netUpgradeValue;
+                netUpgradesPurchased++;
+                break;
             default:
                 Debug.Log("Upgrade not implemented in GameManager.");
                 break;
@@ -130,6 +137,7 @@ public class GameManager : MonoBehaviour
         gameData.Add("speedUpgradesPurchased", speedUpgradesPurchased);
         gameData.Add("rangeUpgradesPurchased", rangeUpgradesPurchased);
         gameData.Add("capacityUpgradesPurchased", capacityUpgradesPurchased);
+        gameData.Add("netUpgradesPurchased", netUpgradesPurchased);
         gameData.Add("timePlayed", Time.time);
         gameData.Add("timeUntilFirstUpgrade", timeUntilFirstUpgrade);
         gameData.Add("firstUpgradePurchased", firstUpgradePurchased);

@@ -1969,6 +1969,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 6410513241832073063, guid: 797eab4f10fb3154a85e287a1943403e, type: 3}
+      propertyPath: net
+      value: 
+      objectReference: {fileID: 2138105343}
+    - target: {fileID: 6410513241832073063, guid: 797eab4f10fb3154a85e287a1943403e, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 825951712}
@@ -7282,3 +7286,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4066544201553214453, guid: 0fd8cdedb28e5fb4ca69e9db6956b260, type: 3}
   m_PrefabInstance: {fileID: 1814144475}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2138105343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4066544201553214456, guid: 0fd8cdedb28e5fb4ca69e9db6956b260, type: 3}
+  m_PrefabInstance: {fileID: 1814144475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea534a42c7c9134e8198f2b4377738f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
