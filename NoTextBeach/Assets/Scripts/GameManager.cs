@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             query += "&" + entry.Key + "=" + entry.Value;
         }
 
-        Application.OpenURL("https://rit.az1.qualtrics.com/jfe/form/SV_aVnF456JZzbo6rk?gamename=Beach" + query);
+        Application.OpenURL("https://rit.az1.qualtrics.com/jfe/form/SV_aVnF456JZzbo6rk?gameName=Beach" + query);
 
         Application.Quit();
     }
