@@ -37,16 +37,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(player == null)
+        if (player == null)
         {
             Debug.Log("Hook up the player, idiot - searching by tag is expensive.");
         }
     }
-    
+
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             QuitTheGame();
         }
@@ -61,13 +61,13 @@ public class GameManager : MonoBehaviour
     /// <param name="cost">The cost of the purchased upgrade.</param>
     public bool Upgrade(UpgradeType upgradeType, int cost)
     {
-        if(timeUntilFirstUpgrade == 0.0f)
+        if (timeUntilFirstUpgrade == 0.0f)
         {
             timeUntilFirstUpgrade = Time.time;
             firstUpgradePurchased = (int)upgradeType;
         }
 
-        if(score < cost) { return false; }
+        if (score < cost) { return false; }
         score -= cost;
 
         // should probably use getters and setters instead of calling fields outright
@@ -86,8 +86,15 @@ public class GameManager : MonoBehaviour
                 capacityUpgradesPurchased++;
                 break;
             case UpgradeType.Net:
-                net.moneyGenerateSpeed -= netUpgradeValue;
-                netUpgradesPurchased++;
+                if (netUpgradesPurchased == 0)
+                {
+                    net.Enable();
+                }
+                else
+                {
+                    net.moneyGenerateSpeed -= netUpgradeValue;
+                    netUpgradesPurchased++;
+                }
                 break;
             default:
                 Debug.Log("Upgrade not implemented in GameManager.");

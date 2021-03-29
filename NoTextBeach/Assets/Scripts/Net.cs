@@ -9,6 +9,8 @@ public class Net : MonoBehaviour
     public float moneyTimer;
     public float moneyGenerateSpeed;
 
+    public bool isEnabled = false;
+
     public AudioSource cashSound;
 
     [SerializeField] private GameManager gameManager;
@@ -23,14 +25,17 @@ public class Net : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Generate money at a set interval
-        if (moneyTimer >= moneyGenerateSpeed)
+        if (isEnabled)
         {
-            GenerateMoney();
-            moneyTimer = 0f;
-        }
+            //Generate money at a set interval
+            if (moneyTimer >= moneyGenerateSpeed)
+            {
+                GenerateMoney();
+                moneyTimer = 0f;
+            }
 
-        moneyTimer += Time.deltaTime;
+            moneyTimer += Time.deltaTime;
+        }
     }
 
     //Increment player score and spawn a money icon
@@ -46,5 +51,10 @@ public class Net : MonoBehaviour
         FloatingIcon iconScript = floatingIcon.GetComponent<FloatingIcon>();
         iconScript.GetComponent<SpriteRenderer>().color = Color.green;
         iconScript.GetComponent<SpriteRenderer>().sprite = iconScript.money;
+    }
+
+    public void Enable()
+    {
+        isEnabled = true;
     }
 }
