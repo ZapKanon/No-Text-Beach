@@ -30,6 +30,8 @@ public class SpawnManager : MonoBehaviour
     private int collectedTrash; //Amount of trash collected since wave was spawned
     private Vector2 waveVelocity = Vector2.zero; //Velocity of the wave
 
+    public AudioSource waveSoundPlayer;
+
     public int AmountToSpawn
     {
         get { return amountToSpawn; }
@@ -144,6 +146,8 @@ public class SpawnManager : MonoBehaviour
     private void MoveWave() //Moves a wave across the screen that recedes and leaves trash behind
     {
         StartCoroutine(WaveEbbAndFlow(Instantiate(wavePrefab, new Vector3(waveStartPos.x, waveStartPos.y, 4), Quaternion.identity, transform)));
+
+        waveSoundPlayer.PlayOneShot(waveSoundPlayer.clip);
     }
 
     IEnumerator WaveEbbAndFlow(GameObject wave)

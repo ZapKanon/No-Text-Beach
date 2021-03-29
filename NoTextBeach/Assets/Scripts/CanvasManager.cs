@@ -59,6 +59,8 @@ public class CanvasManager : MonoBehaviour
             ShowNetGain();
 
         UpdateHoldBar(player.gameObject.GetComponent<Collector>().carrying / player.gameObject.GetComponent<Collector>().capacity);
+
+        UpdateScore();
     }
 
     /// <summary>
@@ -124,9 +126,9 @@ public class CanvasManager : MonoBehaviour
         net_gain_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.1f);
     }
 
-    public void SetScore(int score)
+    public void UpdateScore()
     {
-        text_score.text = score.ToString();
+        text_score.text = GameManager.gm.getScore().ToString();
     }
 
     public void SetNet(int net)

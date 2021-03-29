@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
         score += amount;
     }
 
+    public int getScore() { return score; }
+
 
     /// <summary>
     /// Creates a query for Qualtrics based on game statistics, then quits the application.
