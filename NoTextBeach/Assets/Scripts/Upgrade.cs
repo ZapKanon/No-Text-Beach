@@ -36,7 +36,7 @@ public class Upgrade : MonoBehaviour
     /// </summary>
     public void DoUpgrade()
     {
-        if (GameManager.gm.Upgrade(type, cost))
+        if (GameManager.gm.Upgrade(type, cost) && level < level_max)
         {
             IncrementCost();
             UpdateText();
