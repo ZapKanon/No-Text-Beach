@@ -11,12 +11,12 @@ public class Upgrade : MonoBehaviour
 
     public int level = 1;
     public int cost = 10;
+    public float level_max = 5;
 
     private float damp_vel;
-    private float level_max = 50;
 
     [SerializeField]
-    [Range(1,3)]
+    [Range(1,10)]
     private float cost_multiplier;
 
     // Start is called before the first frame update
@@ -58,6 +58,10 @@ public class Upgrade : MonoBehaviour
     {
         level++;
         cost = (int)(cost_multiplier * (float)(level * level)) - 2 * level + 11; //A parabolic function with a minimum at x = 1, y = 10
+        
+        //cheap way to handle level max out
+        if (level == level_max)
+            cost = 0;
     }
 
     /// <summary>
@@ -66,5 +70,7 @@ public class Upgrade : MonoBehaviour
     private void UpdateText()
     {
         text.text = cost.ToString();
+        if (cost == 0)
+            text.text = "-";
     }
 }
