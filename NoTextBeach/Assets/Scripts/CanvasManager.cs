@@ -2,7 +2,9 @@ using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class CanvasManager : MonoBehaviour
@@ -13,8 +15,13 @@ public class CanvasManager : MonoBehaviour
     public GameObject Tutorial;
     public GameObject ButtonGroup;
     public GameObject UpgradeMenu;
-    public UnityEngine.UI.Image hold_bar_image;
     public GameObject NetGain;
+
+    public UnityEngine.UI.Image hold_bar_image;
+    public UnityEngine.UI.Image net_gain_image;
+
+    public UnityEngine.UI.Text text_score;
+    public UnityEngine.UI.Text text_net_gain;
 
     private float upgrade_button_return_pos;
     private float upgrade_menu_return_pos;
@@ -22,9 +29,10 @@ public class CanvasManager : MonoBehaviour
     private float hold_bar_fill;
     private float damp_vel;
 
-    [Range(0,1f)]
+    private bool has_net = false;
+
+    [Range(0, 1f)]
     public float debug_fill_value;
-    
 
     private void Awake()
     {
@@ -51,6 +59,10 @@ public class CanvasManager : MonoBehaviour
         UpdateHoldBar(debug_fill_value);
     }
 
+    /// <summary>
+    /// Methods that move UI elements
+    /// </summary>
+    #region UI Trisitions
     public void ShowTutorial()
     {
         LeanTween.moveLocalY(Tutorial, 0, 1f).setEaseInOutQuad();
@@ -83,14 +95,19 @@ public class CanvasManager : MonoBehaviour
         LeanTween.moveLocalY(UpgradeMenu, upgrade_menu_return_pos, 1f).setEaseInOutQuad();
     }
 
-    /* Upgrade buttons TO DO:
-     * 1 button per upgrade type
-     * If selected, check upgrade cost against the player's score (kept in GameManager). Only do actions if score >= cost
-     * reduce player score by cost
-     * call the GameManager's Upgrade method
-     * increase cost of the purchased upgrade by a set amount
-     */
+    public void ShowNetGain()
+    {
+        if (!has_net)
+        {
+            LeanTween.moveLocalY(NetGain, 370f, 1f).setEaseInOutQuad();
+            has_net = true;
+        }
+    }
 
+    #endregion
+
+
+    #region UI Update
     public void UpdateHoldBar(float value)
     {
         value = Mathf.Clamp(value, 0f, 1f);
@@ -99,8 +116,24 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void ShowNetGain()
+    public void UpdateNetGainProgress(float value)
     {
-        LeanTween.moveLocalY(NetGain, 370f, 1f).setEaseInOutQuad();
+        value = Mathf.Clamp(value, 0f, 1f);
+        net_gain_image.fillAmount = Mathf.SmoothDamp(hold_bar_image.fillAmount, value, ref damp_vel, 0.1f);
     }
+
+    public void SetScore(int score)
+    {
+        text_score.text = score.ToString();
+    }
+
+    public void SetNet(int net)
+    {
+        text_net_gain.text = net.ToString();
+    }
+
+    #endregion
+
+
+
 }
