@@ -5498,6 +5498,10 @@ PrefabInstance:
       propertyPath: floatingIcon
       value: 
       objectReference: {fileID: 1066130705256992731, guid: a7e8544db127ac149b54060e4642aef9, type: 3}
+    - target: {fileID: 4304903456612746487, guid: 9902e41de84a05f4db70e3a859d9c55f, type: 3}
+      propertyPath: cashCollectSound
+      value: 
+      objectReference: {fileID: 275180052}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9902e41de84a05f4db70e3a859d9c55f, type: 3}
 --- !u!1 &1458217715
@@ -6306,7 +6310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -226, y: -428}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770793679
@@ -6518,6 +6522,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4066544201553214456, guid: 0fd8cdedb28e5fb4ca69e9db6956b260, type: 3}
+      propertyPath: cashSound
+      value: 
+      objectReference: {fileID: 275180052}
     - target: {fileID: 4066544201553214456, guid: 0fd8cdedb28e5fb4ca69e9db6956b260, type: 3}
       propertyPath: gameManager
       value: 
