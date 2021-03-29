@@ -13,6 +13,8 @@ public class Collector : MonoBehaviour
     public CircleCollider2D collectorCollider;
     public GameObject rangeIndicator;
 
+    public AudioSource cashCollectSound;
+
     [SerializeField] private GameObject floatingIcon;
     [SerializeField] private GameObject capacityIcon;
 
@@ -62,6 +64,12 @@ public class Collector : MonoBehaviour
         else if (collision.gameObject.tag == "TrashCan")
         {
             GameObject[] collectedTrash = GameObject.FindGameObjectsWithTag("CollectedTrash");
+
+            if(collectedTrash.Length > 0)
+            {
+                cashCollectSound.PlayOneShot(cashCollectSound.clip);
+            }
+
             foreach (GameObject trash in collectedTrash)
             {
                 trash.GetComponent<Collectable>().Trashed();
