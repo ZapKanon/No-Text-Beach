@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 {
     #region Fields
     public static GameManager gm;
-    public int score;
+    public int score = 0;
+    private int totalScore = 0;
     public Player player;
     public Net net;
 
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
                 if (netUpgradesPurchased == 0)
                 {
                     net.Enable();
+                    netUpgradesPurchased++;
                 }
                 else
                 {
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
     public void addToScore(int amount)
     {
         score += amount;
+        totalScore += amount;
     }
 
     public int getScore() { return score; }
@@ -140,7 +143,7 @@ public class GameManager : MonoBehaviour
     {
         Dictionary<string, float> gameData = new Dictionary<string, float>();
 
-        gameData.Add("score", score);
+        gameData.Add("score", totalScore);
         gameData.Add("speedUpgradesPurchased", speedUpgradesPurchased);
         gameData.Add("rangeUpgradesPurchased", rangeUpgradesPurchased);
         gameData.Add("capacityUpgradesPurchased", capacityUpgradesPurchased);
