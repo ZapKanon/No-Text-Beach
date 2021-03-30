@@ -49,6 +49,6 @@ public class Collectable : MonoBehaviour
     {
         parentCollector.carrying--;
         Destroy(gameObject);
-        Debug.Log("Money++ goes here");
+        //Debug.Log("Money++ goes here");
     }
 }
